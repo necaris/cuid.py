@@ -16,7 +16,8 @@ DISCRETE_VALUES = BASE ** BLOCK_SIZE
 
 # Helper functions
 
-def _to_base36(number, alphabet="0123456789abcdefghijklmnopqrstuvwxyz"):
+_alphabet = "0123456789abcdefghijklmnopqrstuvwxyz"
+def _to_base36(number):
     """
     Convert a positive integer to a base36 string.
 
@@ -25,13 +26,10 @@ def _to_base36(number, alphabet="0123456789abcdefghijklmnopqrstuvwxyz"):
     if number < 0:
         raise ValueError("Cannot encode negative numbers")
 
-    if 0 <= number < len(alphabet):
-        return alphabet[number]
-
     chars = ""
     while number != 0:
-        number, i = divmod(number, len(alphabet))
-        chars = alphabet[i] + chars
+        number, i = divmod(number, 36)  # 36-character alphabet
+        chars = _alphabet[i] + chars
 
     return chars
 
