@@ -31,7 +31,7 @@ def _to_base36(number):
         number, i = divmod(number, 36)  # 36-character alphabet
         chars = _alphabet[i] + chars
 
-    return chars
+    return chars or "0"
 
 
 def _pad(string, size):

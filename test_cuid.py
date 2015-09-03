@@ -18,6 +18,7 @@ class TestHelpers(unittest.TestCase):
             93482: "204q",
             19069: "epp",
             97614: "23bi",
+            0: "0",
         }
 
         for k, v in known_mappings.items():
