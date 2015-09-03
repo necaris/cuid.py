@@ -37,7 +37,7 @@ def _to_base36(number):
 _padding = "000000000"
 def _pad(string, size):
     """
-    'Pad' a tring with leading zeroes to fit the given size, truncating
+    'Pad' a string with leading zeroes to fit the given size, truncating
     if necessary.
     """
     strlen = len(string)
