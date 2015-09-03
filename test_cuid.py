@@ -18,6 +18,7 @@ class TestHelpers(unittest.TestCase):
             93482: "204q",
             19069: "epp",
             97614: "23bi",
+            0: "0",
         }
 
         for k, v in known_mappings.items():
@@ -96,6 +97,13 @@ class TestCuid(unittest.TestCase):
             seen.add(self.generator.slug())
         # Confirm that <10% collide
         self.assertLess(5000 - len(seen), 50)
+
+    def test_sequential(self):
+        previous = self.generator.cuid()
+        for i in range(99999):
+            current = self.generator.cuid()
+            self.assertLess(previous, current)
+            previous = current
 
     def test_is_fast(self):
         """Ensure that several cuids can be generated per millisecond"""

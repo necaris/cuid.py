@@ -31,17 +31,21 @@ def _to_base36(number):
         number, i = divmod(number, 36)  # 36-character alphabet
         chars = _alphabet[i] + chars
 
-    return chars
+    return chars or "0"
 
 
+_padding = "000000000"
 def _pad(string, size):
     """
-    'Pad' a tring with leading zeroes to fit the given size, truncating
+    'Pad' a string with leading zeroes to fit the given size, truncating
     if necessary.
     """
-    padding = "000000000"
-    combined = padding + string
-    return combined[-size:]
+    strlen = len(string)
+    if strlen == size:
+        return string
+    if strlen < size:
+        return _padding[0:size-strlen] + string
+    return string[-size:]
 
 
 def _random_block():
