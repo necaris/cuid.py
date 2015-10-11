@@ -1,4 +1,4 @@
-# cuid.py
+# cuid.py [![Build Status](https://travis-ci.org/necaris/cuid.py.svg)](https://travis-ci.org/necaris/cuid.py)
 
 Implementation of https://github.com/ericelliott/cuid in Python.
 
