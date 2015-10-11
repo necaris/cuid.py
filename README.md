@@ -4,7 +4,7 @@ Implementation of https://github.com/ericelliott/cuid in Python.
 
 A `cuid` is a portable and sequentially-ordered unique identifier designed for horizontal scalability and speed -- this version is ported from the reference implementation in Javascript.
 
-Tested on CPython 2.7 and 3.4 as well as PyPy.
+Tested on CPython 2.7-3.5 as well as PyPy & PyPy3 -- see Travis-CI link above.
 
 Rough benchmarks on my machine (2.2GHz i7, 2012 Macbook Pro):
 - Python 3.4: 19.38μs per cuid
