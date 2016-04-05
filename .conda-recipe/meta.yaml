@@ -1,0 +1,17 @@
+package: 
+    name: cuid.py
+    version: {{ environ.get('GIT_DESCRIBE_TAG', '') }}
+    
+source:
+    git_url: ../
+    
+requirements:
+    build:
+        - python
+        - setuptools
+        
+    run:
+        - python
+        
+about:
+    home: https://github.com/necaris/cuid.py
