@@ -4,9 +4,9 @@ designed for horizontal scalability and speed -- the reference implementation
 is in Javascript at https://github.com/ericelliott/cuid
 """
 import os
-import time
-import socket
 import random
+import socket
+import time
 
 # Constants describing the cuid algorithm
 
@@ -57,7 +57,9 @@ def _random_block():
     random_string = _to_base36(random_number)
     return _pad(random_string, BLOCK_SIZE)
 
+
 # Exported functionality
+
 
 def get_process_fingerprint():
     """

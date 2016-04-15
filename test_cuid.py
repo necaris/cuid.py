@@ -1,6 +1,8 @@
-import unittest
 import timeit
+import unittest
+
 import cuid
+
 
 class TestHelpers(unittest.TestCase):
     """
@@ -27,7 +29,6 @@ class TestHelpers(unittest.TestCase):
     def test_pad(self):
         self.assertEqual("001234", cuid._pad("1234", 6))
         self.assertEqual("234", cuid._pad("1234", 3))
-
 
     def test_random_block(self):
         """
