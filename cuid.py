@@ -22,6 +22,9 @@ def _to_base36(number):
     Convert a positive integer to a base36 string.
 
     Taken from Stack Overflow and modified.
+
+    :param int number: integer to convert
+    :rtype: str
     """
     if number < 0:
         raise ValueError("Cannot encode negative numbers")
@@ -39,6 +42,10 @@ def _pad(string, size):
     """
     'Pad' a string with leading zeroes to fit the given size, truncating
     if necessary.
+
+    :param str string: string to pad
+    :param int size: length of result
+    :rtype: str
     """
     strlen = len(string)
     if strlen == size:
@@ -51,6 +58,8 @@ def _pad(string, size):
 def _random_block():
     """
     Generate a random string of `BLOCK_SIZE` length.
+
+    :rtype: str
     """
     # TODO: Use a better RNG than random.randint
     random_number = random.randint(0, DISCRETE_VALUES)
@@ -65,6 +74,8 @@ def get_process_fingerprint():
     """
     Extract a unique fingerprint for the current process, using a
     combination of the process PID and the system's hostname.
+
+    :rtype: str
     """
     pid = os.getpid()
     hostname = socket.gethostname()
@@ -77,6 +88,9 @@ def get_process_fingerprint():
 _generator = None
 
 def cuid():
+    """
+    :rtype: str
+    """
     global _generator
     if not _generator:
         _generator = CuidGenerator()
@@ -84,6 +98,9 @@ def cuid():
 
 
 def slug():
+    """
+    :rtype: str
+    """
     global _generator
     if not _generator:
         _generator = CuidGenerator()
@@ -96,6 +113,9 @@ class CuidGenerator(object):
     """
 
     def __init__(self, fingerprint=None):
+        """
+        :param str fingerprint: process fingerprint to use
+        """
         self.fingerprint = fingerprint or get_process_fingerprint()
         self._counter = -1
 
@@ -104,6 +124,9 @@ class CuidGenerator(object):
         """
         Rolling counter that ensures same-machine and same-time
         cuids don't collide.
+
+        :return: counter value
+        :rtype: int
         """
         self._counter += 1
         if self._counter >= DISCRETE_VALUES:
@@ -113,6 +136,8 @@ class CuidGenerator(object):
     def cuid(self):
         """
         Generate a full-length cuid as a string.
+
+        :rtype: str
         """
         # start with a hardcoded lowercase c
         identifier = "c"
@@ -133,11 +158,13 @@ class CuidGenerator(object):
 
     def slug(self):
         """
-        Generate a short (7-character) cuid as a bytestring.
+        Generate a short (7-character) cuid as a string.
 
         While this is a convenient shorthand, this is much less likely
         to be unique and should not be relied on. Prefer full-size
         cuids where possible.
+
+        :rtype: str
         """
         identifier = ""
         # use a truncated timestamp
