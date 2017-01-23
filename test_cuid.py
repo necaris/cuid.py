@@ -114,7 +114,7 @@ class TestCuid(unittest.TestCase):
         time_to_run = timeit.timeit(timed_stmt, setup=setup_stmt, number=times)
         time_each = time_to_run / times
         self.assertLess(time_each, 0.0002)
-        print("{:.6f}ms / cuid".format(time_each * 1000))
+        # print("{:.6f}ms / cuid".format(time_each * 1000))
 
 
 if __name__ == "__main__":
