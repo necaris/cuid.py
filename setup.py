@@ -30,8 +30,8 @@ class bench(Command):
         times = 999999
         time_to_run = timeit.timeit(timed_stmt, setup=setup_stmt, number=times)
         time_each = time_to_run / times
-        print("%d cuids in %f s (%f ms per cuid, %f per sec)" %
-              (times, time_to_run, time_each * 1000, 1.0 / time_each))
+        print("%d cuids in %f s (%f us per cuid, %f per sec)" %
+              (times, time_to_run, time_each * 1000000, 1.0 / time_each))
 
 
 setup(
