@@ -14,7 +14,7 @@ class bench(Command):
 
     def __init__(self, *args):
         self.args = args[0]  # so we can pass it to other classes
-        super(Command, self).__init__(*args)
+        Command.__init__(self, *args)
 
     def initialize_options(self):  # distutils wants this
         pass
