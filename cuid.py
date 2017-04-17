@@ -80,7 +80,7 @@ def get_process_fingerprint():
     pid = os.getpid()
     hostname = socket.gethostname()
     padded_pid = _pad(_to_base36(pid), 2)
-    hostname_hash = sum([ord(x) for x in hostname]) + len(hostname) + 36
+    hostname_hash = sum(ord(x) for x in hostname) + len(hostname) + 36
     padded_hostname = _pad(_to_base36(hostname_hash), 2)
     return padded_pid + padded_hostname
 
