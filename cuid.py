@@ -8,6 +8,12 @@ import random
 import socket
 import time
 
+try:
+    from numba import jit
+except ImportError:
+    def jit(f):
+        return f
+
 # Constants describing the cuid algorithm
 
 BASE = 36
@@ -17,6 +23,7 @@ DISCRETE_VALUES = BASE ** BLOCK_SIZE
 # Helper functions
 
 _alphabet = "0123456789abcdefghijklmnopqrstuvwxyz"
+@jit
 def _to_base36(number):
     """
     Convert a positive integer to a base36 string.
@@ -38,6 +45,7 @@ def _to_base36(number):
 
 
 _padding = "000000000"
+@jit
 def _pad(string, size):
     """
     'Pad' a string with leading zeroes to fit the given size, truncating
@@ -55,6 +63,7 @@ def _pad(string, size):
     return string[-size:]
 
 
+@jit
 def _random_block():
     """
     Generate a random string of `BLOCK_SIZE` length.
