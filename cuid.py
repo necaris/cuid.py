@@ -16,8 +16,8 @@ DISCRETE_VALUES = BASE ** BLOCK_SIZE
 
 # Helper functions
 
-_alphabet = "0123456789abcdefghijklmnopqrstuvwxyz"
-def _to_base36(number):
+_ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyz"
+def _to_base36(number):  # type: (int) -> str
     """
     Convert a positive integer to a base36 string.
 
@@ -32,13 +32,13 @@ def _to_base36(number):
     chars = ""
     while number != 0:
         number, i = divmod(number, 36)  # 36-character alphabet
-        chars = _alphabet[i] + chars
+        chars = _ALPHABET[i] + chars
 
     return chars or "0"
 
 
-_padding = "000000000"
-def _pad(string, size):
+_PADDING = "000000000"
+def _pad(string, size):  # type: (str, int) -> str
     """
     'Pad' a string with leading zeroes to fit the given size, truncating
     if necessary.
@@ -51,11 +51,11 @@ def _pad(string, size):
     if strlen == size:
         return string
     if strlen < size:
-        return _padding[0:size-strlen] + string
+        return _PADDING[0:size-strlen] + string
     return string[-size:]
 
 
-def _random_block():
+def _random_block():  # type: () -> str
     """
     Generate a random string of `BLOCK_SIZE` length.
 
@@ -70,7 +70,7 @@ def _random_block():
 # Exported functionality
 
 
-def get_process_fingerprint():
+def get_process_fingerprint():  # type: () ->  str
     """
     Extract a unique fingerprint for the current process, using a
     combination of the process PID and the system's hostname.
@@ -85,26 +85,27 @@ def get_process_fingerprint():
     return padded_pid + padded_hostname
 
 
-_generator = None
+_GENERATOR = None  # type: CuidGenerator
 
-def cuid():
+def _generator():  # type: () -> CuidGenerator
+    global _GENERATOR
+    if not _GENERATOR:
+        _GENERATOR = CuidGenerator()
+    return _GENERATOR
+
+
+def cuid():  # type: () -> str
     """
     :rtype: str
     """
-    global _generator
-    if not _generator:
-        _generator = CuidGenerator()
-    return _generator.cuid()
+    return _generator().cuid()
 
 
-def slug():
+def slug():  # type: () -> str
     """
     :rtype: str
     """
-    global _generator
-    if not _generator:
-        _generator = CuidGenerator()
-    return _generator.slug()
+    return _generator().slug()
 
 
 class CuidGenerator(object):
@@ -113,6 +114,7 @@ class CuidGenerator(object):
     """
 
     def __init__(self, fingerprint=None):
+        # type: (str) -> None
         """
         :param str fingerprint: process fingerprint to use
         """
@@ -121,6 +123,7 @@ class CuidGenerator(object):
 
     @property
     def counter(self):
+        # type: () -> int
         """
         Rolling counter that ensures same-machine and same-time
         cuids don't collide.
@@ -134,6 +137,7 @@ class CuidGenerator(object):
         return self._counter
 
     def cuid(self):
+        # type: () -> str
         """
         Generate a full-length cuid as a string.
 
@@ -157,6 +161,7 @@ class CuidGenerator(object):
         return identifier
 
     def slug(self):
+        # type: () -> str
         """
         Generate a short (7-character) cuid as a string.
 
