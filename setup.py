@@ -35,7 +35,7 @@ class bench(Command):
 
 
 setup(
-    name='cuid.py',
+    name='cuid',
     version=VERSION,
     description='Fast, scalable unique ID generation',
     long_description=README,
