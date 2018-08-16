@@ -7,6 +7,12 @@ import os
 import random
 import socket
 import time
+# Don't _require_ typing imports to work, since we don't need to be dogmatic
+# for Python versions that don't have typing in the stdlib
+try:
+    from typing import Optional
+except ImportError:
+    pass
 
 # Constants describing the cuid algorithm
 
@@ -85,7 +91,7 @@ def get_process_fingerprint():  # type: () ->  str
     return padded_pid + padded_hostname
 
 
-_GENERATOR = None  # type: CuidGenerator
+_GENERATOR = None  # type: Optional[CuidGenerator]
 
 def _generator():  # type: () -> CuidGenerator
     global _GENERATOR
