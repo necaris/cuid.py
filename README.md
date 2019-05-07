@@ -11,7 +11,7 @@ Tested on CPython 2.7-3.6 as well as PyPy & PyPy3 -- see Travis-CI link above.
 Rough benchmarks on my machine (mid-2014 Macbook Pro, 2.8GHz i7) using `setup.py
 bench` (which times the creation of 1 million cuids):
 
-Version | μs / cuid
+Version | us / cuid
 --------|----------
 CPython 3.6 | 11.368
 CPython 3.5 | 9.834
