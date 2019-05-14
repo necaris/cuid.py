@@ -27,11 +27,12 @@ class bench(Command):
         import timeit
         setup_stmt = "import cuid; g = cuid.CuidGenerator()"
         timed_stmt = "g.cuid()"
-        times = 999999
+        times = 1000000
         time_to_run = timeit.timeit(timed_stmt, setup=setup_stmt, number=times)
         time_each = time_to_run / times
-        print("%d cuids in %f s (%f us per cuid, %f per sec)" %
-              (times, time_to_run, time_each * 1000000, 1.0 / time_each))
+        time_each_ns = time_each * 1000000000
+        print("%d cuids in %f s (%f ns per cuid, %f per sec)" %
+              (times, time_to_run, time_each_ns, 1.0 / time_each))
 
 
 setup(
