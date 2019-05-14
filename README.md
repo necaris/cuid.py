@@ -11,13 +11,13 @@ Tested on CPython 2.7-3.6 as well as PyPy & PyPy3 -- see Travis-CI link above.
 Rough benchmarks on my machine (mid-2014 Macbook Pro, 2.8GHz i7) using `setup.py
 bench` (which times the creation of 1 million cuids):
 
-Version | us / cuid
+Version | ns / cuid
 --------|----------
-CPython 3.6 | 11.368
-CPython 3.5 | 9.834
-CPython 3.4 | 9.665
-CPython 2.7 | 8.869
-PyPy 5.6.0 | 0.508
+CPython 3.6 | 11368
+CPython 3.5 | 9834
+CPython 3.4 | 9665
+CPython 2.7 | 8869
+PyPy 5.6.0 | 508
 
 _(Note that timing the creation of fewer IDs changes the way PyPy runs the code, because of JIT warmup --
 obviously creating this many IDs takes advantage of the warmed JIT)_
