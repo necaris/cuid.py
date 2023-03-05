@@ -120,7 +120,7 @@ class CuidGenerator(object):
     """
 
     def __init__(self, fingerprint=None):
-        # type: (str) -> None
+        # type: (Optional[str]) -> None
         """
         :param str fingerprint: process fingerprint to use
         """
