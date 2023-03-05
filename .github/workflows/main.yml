@@ -1,0 +1,26 @@
+name: tests
+on: [push, pull-request]
+jobs:
+  validate:
+    strategy:
+      matrix:
+        version:
+          - "2.7",
+          - "3.7",
+          - "3.8",
+          - "3.9",
+          - "3.10",
+          - "3.11",
+          - "pypy2.7",
+          - "pypy3.8",
+          - "pypy3.9",
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.version }}
+      - run: pip install mypy && mypy cuid.py
+        if: ${{ !contains(matrix.version, 'pypy') }}
+      - run: python test_cuid.py
+      - run: python setup.py bench
