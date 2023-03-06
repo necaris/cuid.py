@@ -3,7 +3,7 @@ import os
 from setuptools import setup, Command
 
 
-VERSION = "0.2"
+VERSION = "0.4"
 with open(os.path.join(os.path.dirname(__file__), "README.md"), "r") as r:
     README = r.read()
 
@@ -40,6 +40,7 @@ setup(
     version=VERSION,
     description='Fast, scalable unique ID generation',
     long_description=README,
+    long_description_content_type='text/markdown',
     url='http://github.com/necaris/cuid.py',
     py_modules=['cuid'],
     # license specified by classifier
