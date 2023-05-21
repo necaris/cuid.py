@@ -6,7 +6,7 @@ A `cuid` is a portable and sequentially-ordered unique identifier designed for
 horizontal scalability and speed -- this version is ported from the reference
 implementation in Javascript.
 
-**NOTE**: Particularly if you have security concerns, the [`cuid` standard has been deprecated in favor of `cuid2`](https://github.com/paralleldrive/cuid2)!
+**NOTE**: Particularly if you have security concerns, the [`cuid` standard has been deprecated in favor of `cuid2`](https://github.com/gordon-code/cuid2)!
 
 Tested on CPython 2.7, 3.6-3.11 as well as PyPy & PyPy3.
 
